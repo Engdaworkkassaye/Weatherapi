@@ -65,8 +65,17 @@ document.addEventListener('DOMContentLoaded', function() {
       var forecastData = await forecastResponse.json();
       return forecastData;
     };
-   
-  
+   var addToSearchHistory=function(cityName)
+   {
+    var historyListitem= document.createElement('li');historyListitem.textContent=cityName;
+    historyListitem.classList.add ('cursor-pointer',hover:text-blue-500');
+    historyListitem.addEventListener('click',function()){
+      cityInputElement.value=cityName;searchFormElement.dispatchEvent(newEvent('submit'));
+    });
+    searchHistoryElement.appendChild(historyListitem);
+    var searchHistory= JSON.parse(localStorage.getItem(searchHistoryElement));
+   }
+   console.log(data)
     searchFormElement.addEventListener('submit', async function(event) {
         event.preventDefault();
         var cityName = cityInputElement.value.trim();
